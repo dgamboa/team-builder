@@ -20,8 +20,21 @@ export default function App() {
   };
 
   const submitForm = () => {
+    const name = formValues.name.trim();
+    const email = formValues.email.trim();
+    const role = formValues.role.trim();
 
-  }
+    const newMember = {
+      name: name,
+      email: email,
+      role: role
+    };
+
+    setMembers([
+      ...members,
+      newMember
+    ]);
+  };
 
   return (
     <div className='App'>
