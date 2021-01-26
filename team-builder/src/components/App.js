@@ -31,14 +31,15 @@ export default function App() {
   return (
     <div className='App'>
       <Form
-        submit={submitForm}  
+        submit={submitForm}
+        memberToEdit={memberToEdit}  
       />
       {
         members.map((member, index) => {
           return (
             <Member
               key={index}
-              details={member}
+              member={member}
               editMember={ editMember }
             />
           )

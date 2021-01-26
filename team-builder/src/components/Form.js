@@ -9,7 +9,11 @@ const initialFormValues = {
 export default function Form(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
 
-  const { submit } = props;
+  const { submit, memberToEdit } = props;
+
+  // if (memberToEdit) {
+  //   setFormValues(memberToEdit);
+  // }
 
   const onChange = event => {
     const { name, value } = event.target;
@@ -24,7 +28,7 @@ export default function Form(props) {
 
     if (!formValues.name || !formValues.email || !formValues.role )
       return
-      
+
     submit(formValues.name, formValues.email, formValues.role);
     setFormValues(initialFormValues);
   }
