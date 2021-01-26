@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function Member(props) {
-  const { details } = props;
+  const { details, editMember } = props;
 
   if (!details) {
     return <h3>Loading team members...</h3>
@@ -12,6 +12,7 @@ export default function Member(props) {
       <h2>{details.name}</h2>
       <p>{details.email}</p>
       <p>{details.role}</p>
+      <button onClick={ () => editMember() }>Edit</button>
     </div>
   )
 }

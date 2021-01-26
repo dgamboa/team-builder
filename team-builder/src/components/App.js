@@ -5,6 +5,7 @@ import Form from './Form'
 
 export default function App() {
   const [members, setMembers] = useState([]);
+  const [memberToEdit, setMemberToEdit] = useState();
 
   const submitForm = (inputName, inputEmail, inputRole) => {
     const name = inputName.trim();
@@ -23,6 +24,10 @@ export default function App() {
     ]);
   };
 
+  const editMember = () => {
+
+  }
+
   return (
     <div className='App'>
       <Form
@@ -31,7 +36,11 @@ export default function App() {
       {
         members.map((member, index) => {
           return (
-            <Member key={index} details={member}/>
+            <Member
+              key={index}
+              details={member}
+              editMember={ editMember }
+            />
           )
         })
       }
