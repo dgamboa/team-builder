@@ -4,7 +4,8 @@ export default function Form(props) {
   const { values, update, submit } = props;
 
   const onChange = event => {
-    
+    const { name, value } = event.target;
+    update(name, value);
   }
 
   const onSubmit = event => {
