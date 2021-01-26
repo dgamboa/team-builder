@@ -21,7 +21,12 @@ export default function Form(props) {
 
   const onSubmit = event => {
     event.preventDefault();
+
+    if (!formValues.name || !formValues.email || !formValues.role )
+      return
+      
     submit(formValues.name, formValues.email, formValues.role);
+    setFormValues(initialFormValues);
   }
 
   return (
