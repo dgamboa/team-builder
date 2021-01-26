@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import Member from './Member'
 import Form from './Form'
 
-
 export default function App() {
   const [members, setMembers] = useState([]);
-  const [memberToEdit, setMemberToEdit] = useState();
+  const [memberToEdit, setMemberToEdit] = useState({});
 
   const submitForm = (inputName, inputEmail, inputRole) => {
     const name = inputName.trim();
@@ -17,15 +16,27 @@ export default function App() {
       email: email,
       role: role
     };
-
-    setMembers([
-      ...members,
-      newMember
-    ]);
+    
+    if (memberToEdit['email']) {
+      const updatedMembers = editMember(name, role, email);
+      setMembers(updatedMembers)
+      setMemberToEdit({});
+    } else {
+      setMembers([
+        ...members,
+        newMember
+      ]);
+    }
   };
 
-  const editMember = () => {
-
+  const editMember = (name, role, email) => {
+    return members.map(member => {
+      if (member.email === email) {
+        member.name = name;
+        member.role = role;
+      }
+      return member
+    });
   }
 
   return (
@@ -40,7 +51,7 @@ export default function App() {
             <Member
               key={index}
               member={member}
-              editMember={ editMember }
+              setMemberToEdit={ setMemberToEdit }
             />
           )
         })

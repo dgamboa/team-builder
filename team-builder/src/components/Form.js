@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const initialFormValues = {
   name: '',
@@ -11,9 +11,9 @@ export default function Form(props) {
 
   const { submit, memberToEdit } = props;
 
-  // if (memberToEdit) {
-  //   setFormValues(memberToEdit);
-  // }
+  useEffect(() => {
+    setFormValues(memberToEdit);
+  }, [memberToEdit])
 
   const onChange = event => {
     const { name, value } = event.target;
