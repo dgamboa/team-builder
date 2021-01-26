@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+const initialFormValues = {
+  name: '',
+  email: '',
+  role: ''
+};
 
 export default function Form(props) {
-  const { values, update, submit } = props;
+  const [formValues, setFormValues] = useState(initialFormValues);
+
+  const { submit } = props;
 
   const onChange = event => {
     const { name, value } = event.target;
-    update(name, value);
+    setFormValues({
+      ...formValues,
+      [name]: value
+    });
   }
 
   const onSubmit = event => {
     event.preventDefault();
-    submit();
+    submit(formValues.name, formValues.email, formValues.role);
   }
 
   return (
@@ -19,7 +30,7 @@ export default function Form(props) {
         <input 
           type='text'
           name='name'
-          value={values.name}
+          value={formValues.name}
           placeholder='Enter a name...'
           onChange={ onChange }
         />
@@ -28,7 +39,7 @@ export default function Form(props) {
         <input 
           type='email'
           name='email'
-          value={values.email}
+          value={formValues.email}
           placeholder='Enter an email...'
           onChange={ onChange }
         />
@@ -36,7 +47,7 @@ export default function Form(props) {
       <label>Role: 
         <select 
           name='role'
-          value={values.role}
+          value={formValues.role}
           onChange={ onChange }
         >
           <option value=''>-- Select a Role --</option>

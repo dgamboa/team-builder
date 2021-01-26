@@ -2,27 +2,14 @@ import React, { useState } from 'react';
 import Member from './Member'
 import Form from './Form'
 
-const initialFormValues = {
-  name: '',
-  email: '',
-  role: ''
-};
 
 export default function App() {
   const [members, setMembers] = useState([]);
-  const [formValues, setFormValues] = useState(initialFormValues);
 
-  const updateForm = (inputName, inputValue) => {
-    setFormValues({
-      ...formValues,
-      [inputName]: inputValue
-    });
-  };
-
-  const submitForm = () => {
-    const name = formValues.name.trim();
-    const email = formValues.email.trim();
-    const role = formValues.role.trim();
+  const submitForm = (inputName, inputEmail, inputRole) => {
+    const name = inputName.trim();
+    const email = inputEmail.trim();
+    const role = inputRole.trim();
 
     const newMember = {
       name: name,
@@ -38,9 +25,7 @@ export default function App() {
 
   return (
     <div className='App'>
-      <Form 
-        values={formValues}
-        update={updateForm}
+      <Form
         submit={submitForm}  
       />
       {
