@@ -39,6 +39,13 @@ export default function App() {
     });
   }
 
+  const deleteMember = (memberToDelete) => {
+    const newMembers = members.filter(member => {
+      return member.email !== memberToDelete.email;
+    })
+    setMembers(newMembers);
+  }
+
   return (
     <div className='App'>
       <Form
@@ -52,6 +59,7 @@ export default function App() {
               key={index}
               member={member}
               setMemberToEdit={ setMemberToEdit }
+              deleteMember={ deleteMember }
             />
           )
         })
